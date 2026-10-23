@@ -1,4 +1,5 @@
 import React from 'react';
+import { HERO_IMAGE } from '../data/base64Images';
 import { ShieldCheck, PhoneCall, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
@@ -74,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
           <div className="lg:col-span-5 relative flex items-center">
             <div className="w-full h-full min-h-[380px] sm:min-h-[460px] rounded-xl overflow-hidden border border-slate-200/80 shadow-xl bg-slate-900 relative group">
               <img
-                src="/src/assets/images/hero_property_maintenance_1792756893561.jpg"
+                src={HERO_IMAGE}
                 alt="Professional British maintenance engineer attending residential property"
                 className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                 referrerPolicy="no-referrer"

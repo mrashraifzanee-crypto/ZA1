@@ -1,4 +1,5 @@
 import React from 'react';
+import { HERO_IMAGE } from '../data/base64Images';
 import { ShieldCheck, Zap, FileCheck2, MapPin, Building2, Home } from 'lucide-react';
 
 interface AboutSectionProps {
@@ -30,7 +31,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenQuote }) => {
           <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-900 flex flex-col relative group">
             <div className="relative h-72 sm:h-80 w-full overflow-hidden">
               <img
-                src="/src/assets/images/hero_property_maintenance_1792756893561.jpg"
+                src={HERO_IMAGE}
                 alt="MaintenanceUK qualified engineer attending property"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"

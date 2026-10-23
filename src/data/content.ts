@@ -1,3 +1,10 @@
+import {
+  PLUMBING_IMAGE,
+  ELECTRICAL_IMAGE,
+  HANDYMAN_IMAGE,
+  COMMERCIAL_IMAGE
+} from './base64Images';
+
 export interface ServiceItem {
   id: string;
   number: string;
@@ -16,7 +23,7 @@ export const SERVICES: ServiceItem[] = [
     number: '01',
     title: 'Plumbing & Gas Heating',
     shortDesc: 'Rapid leak tracing, combi boiler repairs, central heating balancing, and landlord Gas Safety Certificates (CP12).',
-    image: '/src/assets/images/service_plumbing_uk_1792756894187.jpg',
+    image: PLUMBING_IMAGE,
     pricingGuide: 'From £85/hr or fixed quote',
     features: [
       'Emergency burst pipe repairs & leak detection',
@@ -33,7 +40,7 @@ export const SERVICES: ServiceItem[] = [
     number: '02',
     title: 'Electrical & NICEIC Compliance',
     shortDesc: 'Certified domestic and commercial electrical installations, rewiring, consumer unit upgrades, and full EICR safety testing.',
-    image: '/src/assets/images/service_electrical_uk_1792756894447.jpg',
+    image: ELECTRICAL_IMAGE,
     pricingGuide: 'From £90/hr · EICR from £145',
     features: [
       'Full Electrical Installation Condition Reports (EICR)',
@@ -50,7 +57,7 @@ export const SERVICES: ServiceItem[] = [
     number: '03',
     title: 'General Handyman & Property Care',
     shortDesc: 'Multi-skilled carpenters and maintenance specialists for repairs, lock replacements, silicone sealing, and landlord turnarounds.',
-    image: '/src/assets/images/service_handyman_uk_1792758884735.jpg',
+    image: HANDYMAN_IMAGE,
     pricingGuide: 'From £65/hr · Half & full day rates',
     features: [
       'British Standard lock replacements & security hardware',
@@ -67,7 +74,7 @@ export const SERVICES: ServiceItem[] = [
     number: '04',
     title: 'Commercial Facilities Management',
     shortDesc: 'Planned Preventative Maintenance (PPM), reactive repairs, compliance logbooks, and multi-site support for UK businesses.',
-    image: '/src/assets/images/service_commercial_uk_1792756894521.jpg',
+    image: COMMERCIAL_IMAGE,
     pricingGuide: 'Bespoke SLA or contract retainer',
     features: [
       'Planned preventative maintenance schedules (PPM)',

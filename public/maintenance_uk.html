@@ -32,6 +32,11 @@
     })();
   </script>
 
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
     /* CSS Reset & Variables */
     *, *::before, *::after {
@@ -49,12 +54,12 @@
       --amber-500: #f59e0b;
       --amber-400: #fbbf24;
       --emerald-600: #059669;
-      --emerald-500: #10b981;
       --slate-50: #f8fafc;
       --slate-100: #f1f5f9;
       --slate-200: #e2e8f0;
       --slate-300: #cbd5e1;
       --slate-600: #475569;
+      --slate-700: #334155;
       --slate-800: #1e293b;
       --slate-900: #0f172a;
       --white: #ffffff;
@@ -65,8 +70,7 @@
       --radius-md: 10px;
       --radius-lg: 16px;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
       --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.15);
     }
 
@@ -297,7 +301,7 @@
       font-weight: 800;
     }
 
-    /* Hero Visual Card */
+    /* Hero Visual Card with Real Photo */
     .hero-visual {
       position: relative;
       border-radius: var(--radius-lg);
@@ -307,38 +311,56 @@
       border: 1px solid var(--slate-200);
       aspect-ratio: 4/3;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      background: radial-gradient(circle at top right, #1e3a8a, #0b1329);
+      align-items: flex-end;
     }
 
-    .hero-visual-content {
-      padding: 40px;
+    .hero-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
     }
 
-    .hero-visual-badge {
-      display: inline-block;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    .hero-visual:hover .hero-img {
+      transform: scale(1.02);
+    }
+
+    .hero-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(11, 19, 41, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .hero-visual-badge-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      margin: 16px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: var(--shadow-md);
+      width: calc(100% - 32px);
+    }
+
+    .hero-badge-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--slate-950);
+      font-family: var(--font-display);
+    }
+
+    .hero-badge-sub {
+      font-size: 11px;
+      color: var(--amber-600);
       font-weight: 700;
-      color: var(--amber-400);
-      margin-bottom: 12px;
-    }
-
-    .hero-visual h3 {
-      color: white;
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .hero-visual p {
-      color: var(--slate-300);
-      font-size: 14px;
-      max-width: 360px;
-      margin: 0 auto;
+      margin-top: 2px;
     }
 
     /* Full-width Stats Strip */
@@ -430,7 +452,7 @@
       line-height: 1.6;
     }
 
-    /* Services Grid */
+    /* Services Grid with Photos */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -447,10 +469,18 @@
       flex-direction: column;
     }
 
+    .service-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
     .service-card-header {
       background-color: var(--navy-900);
       color: white;
-      padding: 28px;
+      padding: 24px 28px;
     }
 
     .service-number {
@@ -725,10 +755,16 @@
 
         <div>
           <div class="hero-visual">
-            <div class="hero-visual-content">
-              <span class="hero-visual-badge">MaintenanceUk.com</span>
-              <h3>Fast, Certified UK Engineers</h3>
-              <p>Strategically stationed in London, Manchester, Birmingham, Leeds, and Edinburgh for rapid emergency arrival.</p>
+            <img 
+              src="./images/hero.jpg" 
+              alt="Professional British maintenance engineer attending residential property" 
+              class="hero-img"
+              onerror="this.src='/src/assets/images/hero_property_maintenance_1792756893561.jpg';"
+            >
+            <div class="hero-visual-overlay"></div>
+            <div class="hero-visual-badge-card">
+              <div class="hero-badge-title">Official UK Standards · Vetted & Insured Engineers</div>
+              <div class="hero-badge-sub">Average Arrival 48 Mins · £5,000,000 Liability Cover</div>
             </div>
           </div>
         </div>
@@ -806,6 +842,12 @@
       <div class="services-grid">
         <!-- Plumbing & Heating -->
         <div class="service-card">
+          <img 
+            src="./images/plumbing.jpg" 
+            alt="Plumbing and Gas Heating in the UK" 
+            class="service-card-img"
+            onerror="this.src='/src/assets/images/service_plumbing_uk_1792756894187.jpg';"
+          >
           <div class="service-card-header">
             <div class="service-number">01. GAS SAFE ACCREDITED</div>
             <h3>Plumbing & Gas Heating</h3>
@@ -825,6 +867,12 @@
 
         <!-- Electrical -->
         <div class="service-card">
+          <img 
+            src="./images/electrical.jpg" 
+            alt="Electrical & NICEIC Compliance in the UK" 
+            class="service-card-img"
+            onerror="this.src='/src/assets/images/service_electrical_uk_1792756894447.jpg';"
+          >
           <div class="service-card-header">
             <div class="service-number">02. NICEIC APPROVED</div>
             <h3>Electrical & NICEIC Compliance</h3>
@@ -844,6 +892,12 @@
 
         <!-- General Handyman -->
         <div class="service-card">
+          <img 
+            src="./images/handyman.jpg" 
+            alt="General Handyman & Carpentry in the UK" 
+            class="service-card-img"
+            onerror="this.src='/src/assets/images/service_handyman_uk_1792758884735.jpg';"
+          >
           <div class="service-card-header">
             <div class="service-number">03. MULTI-TRADE EXPERTS</div>
             <h3>General Handyman & Carpentry</h3>
@@ -863,6 +917,12 @@
 
         <!-- Commercial Maintenance -->
         <div class="service-card">
+          <img 
+            src="./images/commercial.jpg" 
+            alt="Commercial Facilities Maintenance in the UK" 
+            class="service-card-img"
+            onerror="this.src='/src/assets/images/service_commercial_uk_1792756894521.jpg';"
+          >
           <div class="service-card-header">
             <div class="service-number">04. FACILITIES MANAGEMENT</div>
             <h3>Commercial Facilities Maintenance</h3>

@@ -23,55 +23,98 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenQuote }) => {
           </p>
         </div>
 
-        {/* 3 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {/* Highlighted Visual & 3 Pillars Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           
-          <div className="p-8 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all">
-            <div className="w-12 h-12 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center mb-6">
-              <Zap className="w-6 h-6" />
+          {/* Spotlight Photo Card */}
+          <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-900 flex flex-col relative group">
+            <div className="relative h-72 sm:h-80 w-full overflow-hidden">
+              <img
+                src="/src/assets/images/hero_property_maintenance_1792756893561.jpg"
+                alt="MaintenanceUK qualified engineer attending property"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-4 left-4 bg-slate-900/90 text-amber-400 font-mono text-xs font-bold px-3 py-1 rounded backdrop-blur-xs">
+                Vetted UK Trades
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-slate-950 mb-3 font-display">
-              Fast Response Across the UK
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-4">
-              With engineers based across Greater London, the Midlands, the North West, Yorkshire, and Scotland’s Central Belt, our average emergency dispatch time is under 60 minutes.
-            </p>
-            <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-slate-400" />
-              <span>Dedicated regional dispatch hubs</span>
+
+            <div className="p-6 bg-slate-900 text-white flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-bold font-display text-white mb-2">
+                  Directly Employed & DBS-Vetted Operatives
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Every operative arrives in branded company attire, with digital photo identification and fully calibrated diagnostic tools. We never subcontract to unverified third parties.
+                </p>
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <span>£5M Public Liability</span>
+                <span className="text-amber-400 font-semibold">12-Month Guarantee</span>
+              </div>
             </div>
           </div>
 
-          <div className="p-8 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all">
-            <div className="w-12 h-12 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center mb-6">
-              <ShieldCheck className="w-6 h-6" />
+          {/* 3 Pillars Grid */}
+          <div className="lg:col-span-7 flex flex-col justify-between gap-5">
+            
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex items-start gap-4">
+              <div className="w-11 h-11 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0">
+                <Zap className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-950 mb-1 font-display">
+                  Fast Response Across the UK
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2">
+                  With engineers based across Greater London, the Midlands, the North West, Yorkshire, and Scotland’s Central Belt, our average emergency dispatch time is under 60 minutes.
+                </p>
+                <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Strategic regional hubs near major motorways</span>
+                </div>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-slate-950 mb-3 font-display">
-              Fully Insured & Vetted Experts
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-4">
-              Every engineer undergoes DBS checks, carries official photo ID, and is vetted against official trade registries (Gas Safe, NICEIC). We carry £5,000,000 public and employer liability insurance.
-            </p>
-            <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Full compliance & identity verification</span>
-            </div>
-          </div>
 
-          <div className="p-8 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all">
-            <div className="w-12 h-12 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center mb-6">
-              <FileCheck2 className="w-6 h-6" />
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex items-start gap-4">
+              <div className="w-11 h-11 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-950 mb-1 font-display">
+                  Fully Insured & Certified Experts
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2">
+                  Every heating engineer is Gas Safe registered; all electricians are NICEIC certified. We carry £5,000,000 public and employer liability insurance to protect your property asset.
+                </p>
+                <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Gas Safe & NICEIC independently validated</span>
+                </div>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-slate-950 mb-3 font-display">
-              Digital Clarity & Guarantee
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-4">
-              No guesswork or surprise bills. Every job includes time-stamped photographic before/after documentation, digital compliance certificates, and our 12-month workmanship guarantee.
-            </p>
-            <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-              <FileCheck2 className="w-4 h-4 text-amber-600" />
-              <span>Direct landlord portal & itemised receipts</span>
+
+            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex items-start gap-4">
+              <div className="w-11 h-11 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0">
+                <FileCheck2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-950 mb-1 font-display">
+                  Digital Clarity & Workmanship Guarantee
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2">
+                  No guesswork or surprise bills. Every job includes time-stamped photographic before/after documentation, digital compliance certificates, and our 12-month workmanship warranty.
+                </p>
+                <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                  <FileCheck2 className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Direct landlord portal & itemised invoicing</span>
+                </div>
+              </div>
             </div>
+
           </div>
 
         </div>

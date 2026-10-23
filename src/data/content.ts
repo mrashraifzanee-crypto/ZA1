@@ -50,7 +50,7 @@ export const SERVICES: ServiceItem[] = [
     number: '03',
     title: 'General Handyman & Property Care',
     shortDesc: 'Multi-skilled carpenters and maintenance specialists for repairs, lock replacements, silicone sealing, and landlord turnarounds.',
-    image: '/src/assets/images/hero_property_maintenance_1792756893561.jpg',
+    image: '/src/assets/images/service_handyman_uk_1792758884735.jpg',
     pricingGuide: 'From £65/hr · Half & full day rates',
     features: [
       'British Standard lock replacements & security hardware',

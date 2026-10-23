@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MaintenanceUK | Premium Property Maintenance Across the UK</title>
+    <meta
+      name="description"
+      content="MaintenanceUk.com provides trusted, fully insured property maintenance for UK homeowners, landlords, and commercial property managers. Gas Safe & NICEIC certified, 24/7 rapid response."
+    />
+    <meta property="og:title" content="MaintenanceUK | Premium UK Property Maintenance" />
+    <meta
+      property="og:description"
+      content="Reliable, all-in-one property maintenance across the UK. Plumbing, Electrical, Handyman & Commercial Facilities. Get your free instant quote."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Polyfill/setter for window.fetch to allow extension interceptors to assign fetch without throwing -->
+    <script>
+      (function() {
+        try {
+          var _rawFetch = window.fetch ? window.fetch.bind(window) : null;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _rawFetch;
+            },
+            set: function(fn) {
+              _rawFetch = fn;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {}
+
+        window.addEventListener('error', function(event) {
+          if (
+            (event.filename && event.filename.indexOf('chrome-extension://') !== -1) ||
+            (event.message && event.message.indexOf('Cannot set property fetch') !== -1)
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+
+    <!-- Google Fonts: Plus Jakarta Sans for Display/Brand and Inter/Public Sans aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "MaintenanceUK",
+        "url": "https://maintenanceuk.com",
+        "logo": "https://maintenanceuk.com/logo.png",
+        "description": "Premium, fully insured property maintenance services across the United Kingdom covering plumbing, electrical, carpentry, handyman, and commercial facilities.",
+        "telephone": "+44-800-123-4567",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "30 St Mary Axe",
+          "addressLocality": "London",
+          "postalCode": "EC3A 8EP",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "51.5144",
+          "longitude": "-0.0803"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.92",
+          "reviewCount": "12480"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

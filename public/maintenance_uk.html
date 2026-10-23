@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaintenanceUK | Premium Property Maintenance Across the United Kingdom</title>
+  <meta name="description" content="MaintenanceUk.com provides trusted, fully insured property maintenance for UK homeowners, landlords, and commercial estates. Gas Safe, NICEIC certified, 24/7 fast response.">
+  
+  <!-- Polyfill/setter for window.fetch to allow extension interceptors to assign fetch without throwing -->
+  <script>
+    (function() {
+      try {
+        var _rawFetch = window.fetch ? window.fetch.bind(window) : null;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _rawFetch; },
+          set: function(fn) { _rawFetch = fn; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (err) {}
+
+      window.addEventListener('error', function(event) {
+        if (
+          (event.filename && event.filename.indexOf('chrome-extension://') !== -1) ||
+          (event.message && event.message.indexOf('Cannot set property fetch') !== -1)
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+    })();
+  </script>
+
+  <style>
+    /* CSS Reset & Variables */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy-950: #0b1329;
+      --navy-900: #0f172a;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      --amber-600: #d97706;
+      --amber-500: #f59e0b;
+      --amber-400: #fbbf24;
+      --emerald-600: #059669;
+      --emerald-500: #10b981;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --white: #ffffff;
+      --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-body: 'Public Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.15);
+    }
+
+    html {
+      font-family: var(--font-body);
+      color: var(--slate-800);
+      background-color: var(--slate-50);
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--slate-950);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Emergency Strip */
+    .emergency-bar {
+      background-color: var(--navy-950);
+      color: #e2e8f0;
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .emergency-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .emergency-phone {
+      color: var(--amber-400);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* Main Navigation */
+    .top-header {
+      background-color: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .top-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy-900);
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      background: var(--navy-900);
+      color: var(--amber-400);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .brand span.accent {
+      color: var(--amber-600);
+    }
+
+    .brand span.domain {
+      font-size: 13px;
+      color: var(--slate-600);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+
+    .nav-links a:hover {
+      color: var(--amber-600);
+      transition: color 0.15s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--amber-600);
+      color: var(--white);
+      box-shadow: 0 2px 4px rgba(217,119,6,0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--amber-500);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(217,119,6,0.35);
+    }
+
+    .btn-outline {
+      background-color: var(--white);
+      color: var(--navy-900);
+      border: 1px solid var(--slate-300);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--slate-100);
+      border-color: var(--slate-400);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 64px 0 80px;
+      background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber-600);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--slate-600);
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--slate-200);
+      font-size: 13px;
+      color: var(--slate-700);
+      font-weight: 500;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check-icon {
+      color: var(--emerald-600);
+      font-weight: 800;
+    }
+
+    /* Hero Visual Card */
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      background-color: var(--navy-900);
+      border: 1px solid var(--slate-200);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      background: radial-gradient(circle at top right, #1e3a8a, #0b1329);
+    }
+
+    .hero-visual-content {
+      padding: 40px;
+    }
+
+    .hero-visual-badge {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--amber-400);
+      margin-bottom: 12px;
+    }
+
+    .hero-visual h3 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .hero-visual p {
+      color: var(--slate-300);
+      font-size: 14px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    /* Full-width Stats Strip */
+    .stats-strip {
+      background-color: var(--navy-900);
+      color: var(--white);
+      padding: 40px 0;
+      border-bottom: 1px solid var(--navy-800);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-item {
+      border-left: 2px solid rgba(255,255,255,0.1);
+      padding-left: 20px;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--white);
+      font-family: var(--font-display);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--slate-300);
+      margin-top: 4px;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber-600);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--slate-600);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    /* About Cards */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .about-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 16px 0 10px;
+    }
+
+    .about-card p {
+      font-size: 14px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card-header {
+      background-color: var(--navy-900);
+      color: white;
+      padding: 28px;
+    }
+
+    .service-number {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--amber-400);
+      letter-spacing: 0.05em;
+    }
+
+    .service-card-header h3 {
+      color: white;
+      font-size: 22px;
+      margin: 6px 0 4px;
+    }
+
+    .service-rate {
+      font-size: 12px;
+      color: var(--amber-300);
+      font-weight: 600;
+    }
+
+    .service-body {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-features {
+      list-style: none;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-features li {
+      font-size: 13px;
+      color: var(--slate-700);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* Why Choose Us Grid */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .trust-card {
+      background: var(--slate-100);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+    }
+
+    .trust-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .trust-card p {
+      font-size: 14px;
+      color: var(--slate-600);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background-color: var(--navy-950);
+      color: white;
+      padding: 88px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+    }
+
+    .contact-info h2 {
+      color: white;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--slate-300);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact-detail {
+      background: var(--navy-900);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--navy-800);
+      margin-bottom: 16px;
+    }
+
+    .contact-detail-label {
+      font-size: 12px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .contact-detail-val {
+      font-size: 17px;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: white;
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      color: var(--slate-900);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--amber-600);
+      box-shadow: 0 0 0 2px rgba(217,119,6,0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #070c1a;
+      color: var(--slate-400);
+      font-size: 13px;
+      padding: 48px 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .services-grid,
+      .about-grid,
+      .trust-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 24/7 UK Emergency Hotline Strip -->
+  <div class="emergency-bar">
+    <div class="container">
+      <div>
+        <span>24/7 UK Emergency Hotline: </span>
+        <a href="tel:08001234567" class="emergency-phone">0800 123 4567</a>
+        <span> · Average emergency dispatch under 60 minutes</span>
+      </div>
+      <div>
+        <span>Gas Safe & NICEIC Accredited · £5M Liability Cover</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Bar Navigation -->
+  <header class="top-header">
+    <div class="container">
+      <a href="#" class="brand">
+        <div class="brand-badge">M</div>
+        <div>Maintenance<span class="accent">UK</span><span class="domain">.com</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About Us</a>
+        <a href="#why-choose-us">Why Choose Us</a>
+        <a href="#contact">Get a Quote</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-primary">
+        Get a Free Quote
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-kicker">British Standard Accredited · UK Nationwide Service</div>
+          <h1 class="hero-title">Trusted Property Maintenance for UK Homes & Businesses</h1>
+          <p class="hero-desc">
+            All-in-one property care delivered by vetted, fully insured UK engineers. From 60-minute emergency leak and electrical response to scheduled commercial facilities management across England, Scotland, and Wales.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get a Free Instant Quote</a>
+            <a href="tel:08001234567" class="btn btn-outline">Call 0800 123 4567</a>
+          </div>
+
+          <div class="hero-trust-list">
+            <div class="hero-trust-item"><span class="check-icon">✓</span> Transparent fixed & hourly rates</div>
+            <div class="hero-trust-item"><span class="check-icon">✓</span> £5,000,000 public liability cover</div>
+            <div class="hero-trust-item"><span class="check-icon">✓</span> Gas Safe & NICEIC certified trades</div>
+            <div class="hero-trust-item"><span class="check-icon">✓</span> 100% Workmanship guarantee</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="hero-visual">
+            <div class="hero-visual-content">
+              <span class="hero-visual-badge">MaintenanceUk.com</span>
+              <h3>Fast, Certified UK Engineers</h3>
+              <p>Strategically stationed in London, Manchester, Birmingham, Leeds, and Edinburgh for rapid emergency arrival.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Metrics Strip -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">60 Mins</div>
+          <div class="stat-label">Average emergency response target</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">£5,000,000</div>
+          <div class="stat-label">Public & employers' liability insurance</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Gas Safe & NICEIC certified trades</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">14,850+</div>
+          <div class="stat-label">UK properties maintained with 4.9★ rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-kicker">About MaintenanceUK</div>
+      <h2 class="section-title">The Reliable Property Maintenance Standard</h2>
+      <p class="section-desc">
+        MaintenanceUk.com provides homeowners, buy-to-let landlords, and commercial estates with guaranteed workmanship, prompt response times, and complete peace of mind.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Fast Nationwide Response</h3>
+          <p>
+            Engineers stationed locally in major metropolitan depots ensure urgent leaks, power failures, and lockouts are addressed in under 60 minutes.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>Fully Insured & Vetted</h3>
+          <p>
+            Every technician is DBS checked, carries company photo ID, and holds verified certification with the Gas Safe Register or NICEIC. Covered by £5M liability insurance.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>Digital Accountability</h3>
+          <p>
+            Before-and-after photographic documentation, itemised electronic invoices, and instant digital compliance certificates (CP12 & EICR) sent directly to your inbox.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="section" style="background-color: #ffffff;">
+    <div class="container">
+      <div class="section-kicker">Core Trade Services</div>
+      <h2 class="section-title">Comprehensive Property Services Across the UK</h2>
+      <p class="section-desc">
+        Clear hourly rates or fixed-fee quotations agreed before any work starts. No surprise call-out charges.
+      </p>
+
+      <div class="services-grid">
+        <!-- Plumbing & Heating -->
+        <div class="service-card">
+          <div class="service-card-header">
+            <div class="service-number">01. GAS SAFE ACCREDITED</div>
+            <h3>Plumbing & Gas Heating</h3>
+            <div class="service-rate">From £85/hr or fixed quote</div>
+          </div>
+          <div class="service-body">
+            <p>From emergency burst pipe repairs and boiler breakdowns to central heating balancing and annual landlord CP12 Gas Safety Certificates.</p>
+            <ul class="service-features">
+              <li><span class="check-icon">✓</span> Emergency leak isolation & water damage prevention</li>
+              <li><span class="check-icon">✓</span> Combi boiler repairs, replacements & servicing</li>
+              <li><span class="check-icon">✓</span> Landlord Gas Safety Certificates (CP12)</li>
+              <li><span class="check-icon">✓</span> Unvented cylinder & radiator power flushing</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Book Plumbing Specialist</a>
+          </div>
+        </div>
+
+        <!-- Electrical -->
+        <div class="service-card">
+          <div class="service-card-header">
+            <div class="service-number">02. NICEIC APPROVED</div>
+            <h3>Electrical & NICEIC Compliance</h3>
+            <div class="service-rate">From £90/hr · EICR from £145</div>
+          </div>
+          <div class="service-body">
+            <p>Full 18th Edition certified domestic and commercial electrical solutions, including testing, rewiring, and consumer unit upgrades.</p>
+            <ul class="service-features">
+              <li><span class="check-icon">✓</span> Electrical Installation Condition Reports (EICR)</li>
+              <li><span class="check-icon">✓</span> Consumer unit / fuse board replacements</li>
+              <li><span class="check-icon">✓</span> Emergency circuit tripping diagnostics</li>
+              <li><span class="check-icon">✓</span> EV charging point installation (OZEV approved)</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Book Electrician</a>
+          </div>
+        </div>
+
+        <!-- General Handyman -->
+        <div class="service-card">
+          <div class="service-card-header">
+            <div class="service-number">03. MULTI-TRADE EXPERTS</div>
+            <h3>General Handyman & Carpentry</h3>
+            <div class="service-rate">From £65/hr · Half-day & full-day rates</div>
+          </div>
+          <div class="service-body">
+            <p>Multi-skilled carpenters and maintenance specialists for repairs, lock replacements, silicone sealing, and landlord tenancy turnarounds.</p>
+            <ul class="service-features">
+              <li><span class="check-icon">✓</span> British Standard lock changes & security upgrades</li>
+              <li><span class="check-icon">✓</span> Drywall repair, plaster skim & touch-up painting</li>
+              <li><span class="check-icon">✓</span> Sanitary silicone resealing & tile regrouting</li>
+              <li><span class="check-icon">✓</span> Internal door hanging & draught proofing</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Book Handyman</a>
+          </div>
+        </div>
+
+        <!-- Commercial Maintenance -->
+        <div class="service-card">
+          <div class="service-card-header">
+            <div class="service-number">04. FACILITIES MANAGEMENT</div>
+            <h3>Commercial Facilities Maintenance</h3>
+            <div class="service-rate">Bespoke SLA or contract retainer</div>
+          </div>
+          <div class="service-body">
+            <p>Planned Preventative Maintenance (PPM), reactive repairs, compliance audits, and multi-site support for UK businesses and retail stores.</p>
+            <ul class="service-features">
+              <li><span class="check-icon">✓</span> Planned preventative maintenance schedules (PPM)</li>
+              <li><span class="check-icon">✓</span> Statutory compliance (fire door checks, water hygiene)</li>
+              <li><span class="check-icon">✓</span> Commercial HVAC & air conditioning servicing</li>
+              <li><span class="check-icon">✓</span> 24/7 out-of-hours reactive building repairs</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Enquire for Commercial</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why-choose-us" class="section">
+    <div class="container">
+      <div class="section-kicker">Why MaintenanceUK</div>
+      <h2 class="section-title">Built on Trust, Transparency & Trade Excellence</h2>
+      <p class="section-desc">
+        We understand the frustrations of missed appointments and sudden bills. Here is how we guarantee an unmatched experience.
+      </p>
+
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h3>01. Transparent Upfront Pricing</h3>
+          <p>No unexpected call-out fees or parking add-ons. You receive a clear, agreed price before any tools touch your property.</p>
+        </div>
+        <div class="trust-card">
+          <h3>02. Certified Local UK Experts</h3>
+          <p>All heating engineers are Gas Safe registered; all electricians are NICEIC certified. Fully background checked and verified.</p>
+        </div>
+        <div class="trust-card">
+          <h3>03. 100% Workmanship Guarantee</h3>
+          <p>All labour and supplied parts are backed by our 12-month written guarantee. If an issue arises, we return free of charge.</p>
+        </div>
+        <div class="trust-card">
+          <h3>04. 24/7 Nationwide Emergency Support</h3>
+          <p>Rapid dispatch teams operating day and night across England, Scotland, and Wales for burst pipes, electrical hazards, and boiler failures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Free Quote Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-kicker" style="color: var(--amber-400);">Get in Touch</div>
+          <h2>Request a Free, No-Obligation Quote</h2>
+          <p>
+            Tell us about your property and the work required. Our UK dispatch team will provide an upfront price estimate and confirm technician availability.
+          </p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-label">24/7 Freephone Emergency Line</div>
+            <div class="contact-detail-val">
+              <a href="tel:08001234567" style="color: var(--amber-400);">0800 123 4567</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-label">Head Office (London)</div>
+            <div class="contact-detail-val">020 7946 0991</div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-label">Email Enquiries</div>
+            <div class="contact-detail-val">enquiries@maintenanceuk.com</div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-label">Registered Office</div>
+            <div class="contact-detail-val" style="font-size: 14px; font-weight: normal; color: #cbd5e1;">
+              30 St Mary Axe, City of London, EC3A 8EP
+            </div>
+          </div>
+        </div>
+
+        <!-- Functional Contact Form -->
+        <div class="contact-form">
+          <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 6px;">Request Your Quotation</h3>
+          <p style="font-size: 13px; color: var(--slate-600); margin-bottom: 24px;">We usually respond in under 15 minutes.</p>
+
+          <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you! Your quote request has been received. Reference #MUK-' + Math.floor(100000 + Math.random() * 900000) + '. A maintenance coordinator will contact you shortly.');">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Full Name *</label>
+                <input type="text" class="form-control" placeholder="e.g. David Clarke" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" class="form-control" placeholder="e.g. 07700 900123" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" class="form-control" placeholder="e.g. david@example.co.uk" required>
+              </div>
+              <div class="form-group">
+                <label>UK Postcode *</label>
+                <input type="text" class="form-control" placeholder="e.g. SW1A 1AA" required style="text-transform: uppercase;">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Required Service</label>
+                <select class="form-control">
+                  <option>Plumbing & Gas Heating</option>
+                  <option>Electrical & NICEIC Compliance</option>
+                  <option>General Handyman Services</option>
+                  <option>Commercial Facilities Management</option>
+                  <option>Landlord Safety Certificates (CP12 / EICR)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Timing / Urgency</label>
+                <select class="form-control">
+                  <option>Emergency (Within 2 Hours)</option>
+                  <option>Next Day (Within 24-48 Hours)</option>
+                  <option>Flexible / Planned Date</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Brief Description of Work *</label>
+              <textarea class="form-control" rows="3" placeholder="Describe the fault or maintenance requirements..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px;">
+              Submit & Request Free Quote
+            </button>
+            <p style="font-size: 11px; text-align: center; color: var(--slate-600); margin-top: 10px;">
+              No upfront charges. 100% GDPR compliant. No spam.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <strong>MaintenanceUK.com</strong> · Premium Property Care Across the United Kingdom<br>
+        <span style="font-size: 12px; color: #64748b;">
+          Registered in England & Wales No. 09842102 · VAT Registration No. GB 245 8891 04
+        </span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#why-choose-us">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:08001234567">0800 123 4567</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
